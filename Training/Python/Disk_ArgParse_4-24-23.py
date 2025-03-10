@@ -25,19 +25,11 @@ from collections import defaultdict
 import torch.nn.functional as F
 import csv
 
-#import pandas as pd
-
-
-
-
 
 #%% Set Hyperparamerters and Paths
 
-#os.chdir('C://Users/Richard Bell/Documents/HSS/ML Histomorphometry/Scripts/Matt/Knee')
+root = '/path/to/quptah/folder/'
 
-root = 'C:\\Users\\bellr\\Documents\\Richard Data\\Wachs_Disk_ML\\Manuscript\\QP_Projects\\Round 2\\QP_20_annotations_from_EB\\'
-
-#root = '//athena//oterolab//scratch//rib4002//Mouse_Knee//'
 root_path = root #+ 'Data//'
 results_path = root + 'Results'
 
@@ -107,27 +99,11 @@ LR_gamma = 0.5
 if n_classes == 3:
     Class_Names = ['NP', 'AF','Granulation']
 
-
 if n_classes == 6:
     Class_Names = ['NP', 'AF', 'Endplate', 'Bone', 'Ligament', 'Growth plate']
 
-
 if n_classes == 7:
     Class_Names = ['NP', 'AF','Granulation','Endplate', 'Bone', 'Ligament', 'Growth plate']
-
-if n_classes == 9:
-    Class_Names = ['Synovium', 'Muscle-Tendon','Artifact','Growth Plate', 'Bone Marrow', 'Cortical Bone',
-                   'Trabecular Bone', 'Meniscus-Cartilage',  'Fat']
-    
-if n_classes == 10:
-    Class_Names = ['Synovium', 'Muscle-Tendon','Artifact','Growth Plate', 'Bone Marrow', 'Cortical Bone',
-                   'Trabecular Bone', 'Meniscus', 'Cartilage',  'Fat']
-
-if n_classes == 11:    
-    Class_Names = ['Synovium', 'Muscle-Tendon','Artifact','Growth Plate', 'Bone Marrow', 'Cortical Bone',
-                   'Trabecular Bone', 'Meniscus', 'Cartilage',  'Fat', 'Bone Marrow Fat']
-
-
 
 ach = achitecture[-2:]
 
@@ -207,10 +183,6 @@ class KneeDataset(object):
         #mask = mask.reshape(1,512,512)
         #print(mask.shape)
         
-
-
-
-        
         if np.amax(mask) > 256:
             print(np.amax(mask))
         
@@ -285,40 +257,7 @@ def dice_loss(pred, target, smooth = 1):
     
     
     if weighted_loss_switch == True:
-    
-        if n_classes == 7:
-            # Class_Names = ['Synovium', 'Muscle-Tendon','Artifact','Growth Plate', 'Bone Marrow', 'Bone',
-            #              'Fat']
-            w = torch.tensor([0.0866, 0.012,  0.52, 0.17, 0.018, 0.023, 0.153]).to(device)
-            
-            
-        if n_classes == 9:
-            # Class_Names = ['Synovium', 'Muscle-Tendon','Artifact','Growth Plate', 'Bone Marrow', 'Cortical Bone',
-            #                'Trabecular Bone', 'Meniscus', 'Cartilage',  'Fat']
-            
-            w = torch.tensor([0.069, 0.01,  0.42, 0.142, 0.014, 0.037, 0.052, 0.127, 0.12]).to(device)    
-        
-            
-        if n_classes == 10:
-            # Class_Names = ['Synovium', 'Muscle-Tendon','Artifact','Growth Plate', 'Bone Marrow', 'Cortical Bone',
-            #                'Trabecular Bone', 'Meniscus', 'Cartilage',  'Fat']
-            
-            w = torch.tensor([0.047, 0.007,  0.286, 0.096, 0.009, 0.025, 0.035, 0.283, 0.124, 0.0835]).to(device)
-            
-        if n_classes == 11:    
-            # Class_Names = ['Synovium', 'Muscle-Tendon','Artifact','Growth Plate', 'Bone Marrow', 'Cortical Bone',
-            #                'Trabecular Bone', 'Meniscus', 'Cartilage',  'Fat', 'Bone Marrow Fat']
-            
-            w = torch.tensor([0.026, 0.003,  0.157, 0.053, 0.005, 0.014, 0.019, 0.156, 0.068, 0.051, 0.457]).to(device)
-
-        # batch by class tensor
-        weight_loss = torch.sum(torch.mul(loss, w), dim=1)
-
-        # return weighted loss
-        
-        loss_by_class = torch.mean(loss, 0)
-        
-        return loss_by_class, loss.mean(), weight_loss.mean()
+        a = 1
     
     else:
         
