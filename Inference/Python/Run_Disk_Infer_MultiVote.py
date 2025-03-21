@@ -123,41 +123,6 @@ if __name__ == "__main__":
         for process in processes:
             process.join()
     
-    
-        path = 'C:\\Users\\bellr\\Documents\\Richard Data\\Wachs_Disk_ML\\QuPath Projects\\QP_Nerve_Study_Infer_8-28-24_withNP-AFconfus'
-        pattern = os.path.join(path + '\\Majority_Vote_Results', '*.csv')
-
-        Confus_data = glob.glob(pattern)
-
-        # Read each CSV file and concatenate them into one DataFrame
-        all_data = pd.concat([pd.read_csv(f) for f in Confus_data], ignore_index=True)
-
-
-        # Parse the 'slide_ID' column by '_'
-        new_cols = all_data['Slide_ID'].str.split('_', expand=True)
-
-
-        new_new_Cols = new_cols[2].str.split('.', expand=True)
-
-        # Assign new columns to the DataFrame
-        all_data['Study'] = new_cols[0]
-        all_data['Animal_ID'] = new_cols[1]
-        all_data['Slide_Num'] = new_new_Cols[0]
-        all_data['Scene'] = new_new_Cols[1].str[-2:]
-
-        # Save the modified DataFrame to a new CSV file
-        all_data.to_csv(path + '//Majority_Vote_Results//All_NP_AF_Confusion_Data.csv', index=False)
-
-        # Group by 'animal_ID' and calculate the mean, keeping 'slide_ID' and 'Study' as first values
-        summary = all_data.groupby('Animal_ID').agg({
-            'Slide_ID': 'first',
-            'Study': 'first',
-            'Animal_ID' : 'first',
-            **{col: 'mean' for col in all_data.select_dtypes(include='number').columns}
-        })
-
-
-        summary.to_csv(path + '//Majority_Vote_Results//Summerized_NP_AF_Confusion_Data.csv')
 
     # if delete_temp_files == True:
         
