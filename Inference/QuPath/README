@@ -1,1 +1,3 @@
 These are the Qupath .groovy scripts used for inference
+
+You 1) create tiles with Create_Tiles.groovy; 2) run inference with the python scripts; 3) Import majority votes back into QuPath; and 4) Calculate cell and annotation statistics with Cell_Detection_and_SaveAnnotations.groovy
