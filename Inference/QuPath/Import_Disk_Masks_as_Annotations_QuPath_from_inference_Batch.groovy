@@ -17,10 +17,8 @@ def imageName = ServerTools.getDisplayableImageName(getCurrentServer())
 
 imageName = imageName //[0..-5]
 
-def directoryPath = "C:/Users/bellr/Documents/Richard Data/Wachs_Disk_ML/QuPath Projects/QP_OxStress_6-27-24/Majority_Vote_Results/" + imageName
+def directoryPath = "path/to/Majority_Vote_Results/" + imageName
 
-
-//def directoryPath = 'R:/MK Anti-TNF 2nd Batch/Results_Majority_Vote/916 R K LVL2' // TO CHANGE
 File folder = new File(directoryPath);
 File[] listOfFiles = folder.listFiles();
 
@@ -113,19 +111,6 @@ mergeSelectedAnnotations()
 selectObjectsByClassification("Growth plate");
 mergeSelectedAnnotations()
 
-selectObjectsByClassification("Meniscus-Cartilage");
-mergeSelectedAnnotations()
 
-selectObjectsByClassification("Artifact");
-mergeSelectedAnnotations()
-
-selectObjectsByClassification("Cartilage");
-mergeSelectedAnnotations()
-
-selectObjectsByClassification("Bone Marrow Fat");
-mergeSelectedAnnotations()
-
-selectObjectsByClassification("Meniscus");
-mergeSelectedAnnotations()
 
 
