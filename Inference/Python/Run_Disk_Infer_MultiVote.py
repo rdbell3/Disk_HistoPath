@@ -8,15 +8,14 @@ Created on Sun Jul 23 15:17:53 2023
 import argparse
 import os
 import multiprocessing
-import glob
 import pandas as pd
 
 
 from move_files_for_inference_v2 import move_files_for_inference
 from Disk_Load_Weights_And_Infer import infer
 from organize_inference_for_Majority_vote_Disk_2 import organize_for_majority_vote 
-#from majority_vote_Disk_v3_Multi import vote
-from majority_vote_Disk_v3_NP_AF_confusion_v2 import vote
+from majority_vote_Disk_v3_Multi import vote
+
 
 
 
