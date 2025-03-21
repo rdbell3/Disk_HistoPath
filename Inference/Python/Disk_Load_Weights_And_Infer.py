@@ -1,4 +1,4 @@
-'''https://github.com/usuyama/pytorch-unet'''
+
 
 #%% Imports
 
@@ -15,9 +15,9 @@ import random
 from tqdm import tqdm 
 from torch import nn
 import transforms_inference as T
-#import utils
-from imgaug import augmenters as iaa
-#from imgaug.augmentables.segmaps import SegmentationMapOnImage
+
+
+
 import torchvision
 import skimage.io as io
 from datetime import datetime
