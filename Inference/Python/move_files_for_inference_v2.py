@@ -14,7 +14,7 @@ import numpy as np
 def move_files_for_inference(root_dir):
     
     #%%
-    #root_dir = "R:\\MK Anti-TNF 2nd Batch"
+    
     path = root_dir + "\\tiles"
     
     if not os.path.isdir(f'{root_dir}\\Org_for_Inference'):
@@ -35,11 +35,6 @@ def move_files_for_inference(root_dir):
         for j in names:
             
             img = cv2.imread(f'{path}\\{i}\\{j}')
-            
-            #img = cv2.imread(f'{path}\\{i}\\ES 4164 - L3.vsi - 40x [x=0,y=13760,w=2048,h=2048].jpg')
-            #img2 = cv2.imread(f'{path}\\{i}\\ES 4164 - L3.vsi - 40x [x=0,y=6880,w=2048,h=2048].jpg')
-            
-            
             
             #avg = np.mean(img)
             try:
